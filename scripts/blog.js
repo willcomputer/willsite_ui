@@ -25,11 +25,15 @@ function displayBlogBody(id) {
   container.innerHTML = '';
   const blogBody = document.createElement('div');
 
-  const backbutton = document.createElement('div');
-  backbutton.innerHTML = '<p><a onclick="loadBlogList()">Return to Blog List</a></p>';
-  blogBody.appendChild(backbutton);
+  const blogHeader = document.createElement('div');
+  blogHeader.innerHTML = `
+                          <p><a onclick="loadBlogList()">Return to Blog List</a></p>
+                          <h2>${blogs[id]["title"]}</h2>
+                          <p>${blogs[id]["date"]}</p>
+                          `;
+  blogBody.appendChild(blogHeader);
 
-  console.log(blogs[id]);
+
 
   blogs[id]["bodies"].forEach(item => {
 
@@ -37,6 +41,10 @@ function displayBlogBody(id) {
 
     if (item["type"] == "body") {
       element.innerHTML = `<p>${item["content"]}</p>`;
+    }
+
+    if (item["type"] == "subtitle") {
+      element.innerHTML = `<h3>${item["content"]}</h3>`
     }
 
     if (item["type"] == "photo") {

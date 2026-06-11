@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles/format-style.css">
     <link rel="stylesheet" href="styles/font.css">
     <link rel="stylesheet" href="styles/text-style.css">
@@ -25,15 +28,16 @@
         </div>
 
         <div id="sidebar">
-            <p><a onclick="loadHome()">Home</a></p>
-            <p><a onclick="loadBlogList()">Blogs</a></p>
-            <p>Small Web</p>
-            <p>Pool Progress</p>
-        </div>
+            <nav class="left-align-text">
+                <p><a onclick="loadHome()">Home</a></p>
+                <p><a onclick="loadBlogList()">Blogs</a></p>
+                <p><a onclick="loadSmallWeb()">Small Web</a></p>
 
-        <div id="email">
-            <p>Sign up for the newsletter</p>
-            <input placeholder="email@gmail.com"/>
+                <div class="email">
+                    <p>Sign up for the newsletter</p>
+                    <input placeholder="email@gmail.com" />
+                </div>
+            </nav>
         </div>
 
         <div id="content-container">
@@ -49,6 +53,8 @@
 
 <script src="scripts/home.js"></script>
 <script src="scripts/blog.js"></script>
+<script src="scripts/small-web.js"></script>
+
 
 
 </html>
