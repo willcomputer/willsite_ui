@@ -1,2 +1,2 @@
 # willsite_v2
-messing around with webdev stuff
+Messing around with the basics of HTML, CSS, and JS. Might take over my main site if I like it enough. 
