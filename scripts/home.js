@@ -3,10 +3,38 @@ function loadHome() {
     container.innerHTML = '';
 
     const body = document.createElement('div');
-    body.innerHTML = '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library, took a 1914 Cicero translation and scrambled it to make dummy text for Letrasets Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software including versions of Lorem Ipsum.</p>';
-
+    body.innerHTML = `
+        <p>Welcome to my website! Here you will find blogs containing my ephemeral thoughts, good-enough photography, and statistics about my hobbies.
+        <p>Use the navigation sidebar to discover mediocrity at its finest.</p>
+        <p>Enjoy your stay!</p>`
     container.appendChild(body);
+}
 
+async function updateEmail() {
+    try {
+        let email = document.getElementById('email-input').value;
+        document.getElementById('email-input').value = "";
+        const response = await fetch(`https://api.will.computer/add-email?email=${email}`);
+        let backendReponse = await response.json();
+
+        let emailDiv = document.getElementById('email');
+
+        let responseMessage = document.createElement('p');
+        responseMessage.setAttribute("id", "responseMessage");
+
+        if (backendReponse["message"] == true) {  
+            responseMessage.innerHTML = 'Successfully subscribed!';
+        } else {
+            responseMessage.innerHTML = 'Failed, please try again later';
+        }
+        emailDiv.appendChild(responseMessage);
+
+        setTimeout(() => {
+            document.getElementById('responseMessage').remove();
+        }, 5000)
+    } catch (error) {
+        console.error('Error adding email:', error);
+    }
 }
 
 loadHome();

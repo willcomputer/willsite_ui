@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>willsite</title>
+    <title>will.computer</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@
 
         <div id="banner">
             <h1>will.computer</h1>
-            <p class="comic-neue-regular-italic">A simple approach to websites</p>
+            <p class="comic-neue-regular-italic">A simple approach to website design</p>
         </div>
 
         <div id="sidebar">
@@ -33,9 +33,10 @@
                 <p><a onclick="loadBlogList()">Blogs</a></p>
                 <p><a onclick="loadSmallWeb()">Small Web</a></p>
 
-                <div class="email">
-                    <p>Sign up for the newsletter</p>
-                    <input placeholder="email@gmail.com" />
+                <div id="email">
+                    <p>Newsletter Sign Up</p>
+                    <input id="email-input" placeholder="email@gmail.com" />
+                    <p><a onclick="updateEmail()">Submit</a></p>
                 </div>
             </nav>
         </div>
@@ -54,6 +55,7 @@
 <script src="scripts/home.js"></script>
 <script src="scripts/blog.js"></script>
 <script src="scripts/small-web.js"></script>
+<script src="scripts/billiards.js"></script>
 
 
 

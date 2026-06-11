@@ -8,6 +8,7 @@ async function loadBlogList() {
     const container = document.getElementById('root');
     container.innerHTML = '';
 
+
     let index = blogs.length - 1;
     blogs.toReversed().forEach(item => {
       const element = document.createElement('div');
@@ -16,7 +17,7 @@ async function loadBlogList() {
       index--;
     });
   } catch (error) {
-    console.error('Error fetching user:', error);
+    console.error('Error fetching blogs:', error);
   }
 }
 
@@ -49,6 +50,22 @@ function displayBlogBody(id) {
 
     if (item["type"] == "photo") {
       element.innerHTML = `<img src="https://api.will.computer/get-image?id=${item["content"]}"/>`
+    }
+
+    if (item["type"] == "question") {
+      element.innerHTML = `<p class="comic-neue-regular-italic">${item["content"]}</p>`;
+    }
+
+    if (item["type"] == "quote") {
+      element.innerHTML = `<blockquote class="comic-neue-regular-italic">${item["content"]}</blockquote>`;
+    }
+
+    if (item["type"] == "author") {
+      element.innerHTML = `<p class="quote-author">${item["content"]}</p>`;
+    }
+
+    if (item["type"] == "link") {
+      element.innerHTML = `<p><a target="_blank" href="${item["content"]}">${item["content"]}</a></p>`;
     }
 
     blogBody.appendChild(element);

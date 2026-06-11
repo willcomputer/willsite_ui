@@ -13,3 +13,9 @@ a {
 img {
   width: 100%;
 }
+
+.quote-author {
+    display: flex; 
+    justify-content: flex-end; 
+    margin-right: 3em;
+}
