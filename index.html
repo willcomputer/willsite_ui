@@ -5,35 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <title>willsite</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-    
-    <title>willsite</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="font.css">
+    <link rel="stylesheet" href="styles/format-style.css">
+    <link rel="stylesheet" href="styles/font.css">
+    <link rel="stylesheet" href="styles/text-style.css">
 </head>
 
 <body>
 
-    <div class="main">
+    <div id="main">
 
         <div id="banner">
-            <h1>Welcome to Willsite</h1>
-            <p class="comic-neue-regular-italic">A simple approach to blogs</p>
+            <h1>will.computer</h1>
+            <p class="comic-neue-regular-italic">A simple approach to websites</p>
         </div>
 
-        <div class="content">
+        <div id="sidebar">
+            <p><a onclick="loadHome()">Home</a></p>
+            <p><a onclick="loadBlogList()">Blogs</a></p>
+            <p>Small Web</p>
+            <p>Pool Progress</p>
+        </div>
 
-            <div id="blog">
-                <p>Loading list...</p>
+        <div id="email">
+            <p>Sign up for the newsletter</p>
+            <input placeholder="email@gmail.com"/>
+        </div>
+
+        <div id="content-container">
+            <div id="root">
+                <p>Please enable Javascript for this website.</p>
             </div>
         </div>
 
     </div>
 
 
-    <script src="script.js"></script>
 </body>
+
+<script src="scripts/home.js"></script>
+<script src="scripts/blog.js"></script>
+
 
 </html>
