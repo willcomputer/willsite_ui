@@ -8,6 +8,10 @@ async function loadBlogList() {
     const container = document.getElementById('root');
     container.innerHTML = '';
 
+    let backButton = document.createElement('p');
+    backButton.innerHTML = `<p><a onclick="loadHome()">Return Home</a></p>`;
+    container.appendChild(backButton);
+
 
     let index = blogs.length - 1;
     blogs.toReversed().forEach(item => {

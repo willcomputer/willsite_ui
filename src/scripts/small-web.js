@@ -1,14 +1,40 @@
+
+const sites = [
+
+    {
+        name: "nate-griffith.com",
+        url: "https://nate-griffith.com/"
+    },
+
+    {
+        name: "ethanshealey.com",
+        url: "https://ethanshealey.com/"
+    },
+    
+    {
+        name: "avery-clark.netlify.app",
+        url: "https://avery-clark.netlify.app/"
+    }
+
+]
+
+
+
 function loadSmallWeb() {
     const container = document.getElementById('root');
     container.innerHTML = '';
-    const body = document.createElement('div');
+    const innerContainer = document.createElement('div');
 
+    let backButton = document.createElement('p');
+    backButton.innerHTML = `<p><a onclick="loadHome()">Return Home</a></p>`;
+    innerContainer.appendChild(backButton);
 
+    sites.forEach(site => {
+        let tag = document.createElement('p');
+        tag.innerHTML = `<a target="_blank" href="${site.url}">${site.name}</a>`;
+        innerContainer.appendChild(tag);
 
-    body.innerHTML = `
-    <p><a target="_blank" href="https://nate-griffith.com/">https://nate-griffith.com/</a></p> 
-    <p><a target="_blank" href="https://www.ethanshealey.com/">https://www.ethanshealey.com/</a></p> 
-    <p><a target="_blank" href="https://avery-clark.netlify.app/">https://avery-clark.netlify.app/</a></p>
-    `;
-    container.appendChild(body);
+    })
+
+    container.appendChild(innerContainer);
 }

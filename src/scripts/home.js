@@ -1,3 +1,6 @@
+
+
+
 function loadHome() {
     const container = document.getElementById('root');
     container.innerHTML = '';
@@ -6,7 +9,12 @@ function loadHome() {
     body.innerHTML = `
         <p>Welcome to my website! Here you will find blogs containing my ephemeral thoughts, good-enough photography, and statistics about my hobbies.
         <p>Use the navigation sidebar to discover mediocrity at its finest.</p>
-        <p>Enjoy your stay!</p>`
+        <p>Enjoy your stay!</p>
+        <nav>
+            <p><a onclick="loadBlogList()">Blogs</a></p>
+            <p><a onclick="loadSmallWeb()">Small Web</a></p>
+            <p><a onclick="loadServerHealth()">Server Health</a></p>
+        </nav>`
     container.appendChild(body);
 }
 
