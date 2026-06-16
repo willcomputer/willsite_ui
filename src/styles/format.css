@@ -1,32 +1,27 @@
 html, body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
 }
 
 body {
-    background-image: url(/assets/wood.jpg);
+    background-image: url(/assets/trees.gif);
 
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1em;
 }
 
 #main {
-    width: min(100vw, calc(100vh * (766 / 1040)));
-    aspect-ratio: 766 / 1040;
 
-    background-image: url(/assets/pool-table.png);
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: contain;
+    background-color: rgba(31, 99, 0, 0.5);
+    padding-top: 1em;
+    width: 60%;
 
 
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    overflow: hidden;
 }
 
 
@@ -35,5 +30,12 @@ h1 {
 }
 
 #root {
-    margin-bottom: 6vh;
+    padding-bottom: 1em;
+}
+
+@media only screen and (max-width: 767px) {
+  #main {
+    width: 100%;
+  }
+
 }
