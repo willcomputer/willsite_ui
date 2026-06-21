@@ -1,3 +1,5 @@
+import {signedIn, username} from './account.js';
+
 const htmlID = "slots";
 
 const symbols = ['bar.png', 'bell.png', 'cherry.png', 'seven.png'];
@@ -5,9 +7,18 @@ const symbols = ['bar.png', 'bell.png', 'cherry.png', 'seven.png'];
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 function roll() {
-    runLoop(1, 2000);
-    runLoop(2, 2500);
-    runLoop(3, 3000);
+    if (accountCheck()) {
+        runLoop(1, 2000);
+        runLoop(2, 2500);
+        runLoop(3, 3000);
+    } else {
+        alert('You need to sign in to play')
+    }
+
+}
+
+function accountCheck() {
+    return signedIn;
 }
 
 function getRandomSymbol() {
@@ -34,7 +45,7 @@ async function runLoop(position, rollTimeMs) {
 
 }
 
-function display(tagName, fruit) {
+function display(tagName) {
 
     // Create the slot symbols
     let symbolOne = createSymbolContainer(1);
@@ -93,4 +104,4 @@ function createSymbolContainer(position) {
 
 
 
-display(htmlID, "banana");
+display(htmlID);
