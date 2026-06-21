@@ -1,9 +1,26 @@
-export let signedIn = false;
-export let username = '';
+import { displayUserStats } from "./stats.js";
 
+export function isSignedIn() {
+    return signedIn;
+}
+
+export function getUsername() {
+    return username;
+}
+export function getToken() {
+    return sessionToken;
+}
+
+let signedIn = false;
+let username = '';
+let sessionToken = '';
 const htmlTag = "account";
 
 function display() {
+
+    let announcement = document.createElement('div');
+    announcement.className = 'center-div';
+    announcement.innerHTML = '<p>Before you spin, get signed in!</p>';
 
     const loginButton = document.createElement('button');
     loginButton.onclick = displayLogin;
@@ -32,6 +49,7 @@ function display() {
     // get the parent & add everything to parent 
     const parentContainer = document.getElementById(htmlTag);
     parentContainer.innerHTML = '';
+    parentContainer.appendChild(announcement);
     parentContainer.appendChild(buttonContainer);
 
 }
@@ -52,6 +70,7 @@ function displayAccountControls(submitAction) {
     const passwordInput = document.createElement('input');
     passwordInput.id = 'password';
     passwordInput.placeholder = 'Password';
+    passwordInput.type = 'password'
 
     const submitButton = document.createElement('button');
     submitButton.onclick = submitAction;
@@ -89,22 +108,42 @@ function displayAccountControls(submitAction) {
 }
 
 async function submit(endpoint) {
-    let username = document.getElementById('username').value;
+    let local_username = document.getElementById('username').value;
     let password = document.getElementById('password').value;
 
-    if (username == '' || password == '') {
+    if (local_username == '' || password == '') {
         alert('Please fill out both username and password');
         return;
     }
 
-
     try {
-        const response = await fetch('https://api.will.computer/' + endpoint);
+        const url = new URL('https://api.will.computer/' + endpoint);
+        url.search = new URLSearchParams({
+            username: local_username,
+            password: password,
+        }).toString();
+
+        const response = await fetch(url);
         let res = await response.json();
+    
+        if (response.ok) {
+            console.log('Successfully logged in.')
+            sessionToken = res['session'];
+            signedIn = true;
+            username = local_username;
+            document.getElementById(htmlTag).innerHTML = ''
+            displayUserStats();
+
+
+        } else {
+            console.log(res);
+            let message = res['message'];
+            displayAccountError(message);
+        }
+
     } catch (error) {
-        console.error('Error fetching blogs:', error);
+        console.error('Error handling account:', error);
     }
-    alert(endpoint);
 }
 
 function submitLogin() {
@@ -114,6 +153,12 @@ function submitLogin() {
 function submitSignUp() {
     submit('signup');
 }
+
+
+function displayAccountError(message) {
+
+}
+
 
 
 display();
