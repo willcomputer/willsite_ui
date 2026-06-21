@@ -1,8 +1,8 @@
 * {
-  font-family: "Comic Neue", cursive;
+  font-family: "Bangers", system-ui;
   font-weight: 400;
   font-style: normal;
-  color: antiquewhite;
+  color: rgb(249, 249, 249);
 }
 
 #root {
@@ -10,8 +10,8 @@
 }
 
 a {
-    text-decoration: underline;
-    cursor: pointer;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 img {
@@ -19,7 +19,7 @@ img {
 }
 
 .quote-author {
-    display: flex; 
-    justify-content: flex-end; 
-    margin-right: 3em;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 3em;
 }

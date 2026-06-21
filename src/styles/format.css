@@ -1,10 +1,11 @@
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
 }
 
 body {
-    background-image: url(/assets/trees.gif);
+    background-image: url(/assets/backgrounds/calm-bg.gif);
 
     display: flex;
     align-items: center;
@@ -13,17 +14,24 @@ body {
 }
 
 #main {
-
-    background-color: rgba(31, 99, 0, 0.5);
+    /* background-color: rgba(31, 99, 0, 0.5); */
     padding-top: 1em;
     width: 60%;
-
 
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
+/* Generic class for centering */
+.center-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 1em;
+}
 
 h1 {
     margin-top: 6vh;
@@ -33,9 +41,11 @@ h1 {
     padding-bottom: 1em;
 }
 
+
+
 @media only screen and (max-width: 767px) {
-  #main {
-    width: 100%;
-  }
+    #main {
+        width: 100%;
+    }
 
 }
