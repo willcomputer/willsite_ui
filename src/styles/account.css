@@ -18,3 +18,7 @@ input {
     color: gray;
     width: 200%;
 }
+
+.loading {
+    width: 50px;
+}

@@ -23,3 +23,7 @@ img {
   justify-content: flex-end;
   margin-right: 3em;
 }
+
+input {
+  font-family: sans-serif;
+}

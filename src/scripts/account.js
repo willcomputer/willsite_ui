@@ -54,6 +54,20 @@ function display() {
 
 }
 
+function displayLoading() {
+    const loadingImg = document.createElement('img');
+    loadingImg.setAttribute('src', 'assets/loading.gif');
+    loadingImg.className = 'loading';
+    
+    const parentContainer = document.getElementById('inputs');
+    parentContainer.innerHTML = '';
+    parentContainer.appendChild(loadingImg);
+}
+
+function clearLoading() {
+    // alert("done loading")
+}
+
 function displaySignUp() {
     displayAccountControls(submitSignUp);
 }
@@ -93,6 +107,7 @@ function displayAccountControls(submitAction) {
 
 
     const accountControlsContainer = document.createElement('div');
+    accountControlsContainer.id = 'inputs';
     accountControlsContainer.className = 'inputs';
     accountControlsContainer.appendChild(usernameInput);
     accountControlsContainer.appendChild(passwordInput);
@@ -116,6 +131,7 @@ async function submit(endpoint) {
         return;
     }
 
+    displayLoading()
     try {
         const url = new URL('https://api.will.computer/' + endpoint);
         url.search = new URLSearchParams({
@@ -143,6 +159,8 @@ async function submit(endpoint) {
 
     } catch (error) {
         console.error('Error handling account:', error);
+    } finally {
+        clearLoading()
     }
 }
 
