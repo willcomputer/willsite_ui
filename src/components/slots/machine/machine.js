@@ -1,5 +1,8 @@
-import { isSignedIn, getUsername, getToken } from './account.js';
-import { displayUserStats } from './stats.js';
+import { isSignedIn, getUsername, getToken } from '../account/account.js';
+import { displayUserStats } from '../stats/stats.js';
+import { loadFileToElement } from '../../../scripts/loadHtml.js';
+
+const filePath = `components/slots/machine`;
 
 const htmlTag = "slots";
 
@@ -54,57 +57,15 @@ async function runLoop(position, rollTimeMs, finalSymbol) {
     changeSymbol(getSymbolPath(finalSymbol), position);
 }
 
-function display() {
+async function display() {
 
-    // Create the slot symbols
-    let symbolOne = createSymbolContainer(1);
-    let symbolTwo = createSymbolContainer(2);
-    let symbolThree = createSymbolContainer(3);
+    await loadFileToElement(`${filePath}/html/machine.html`, htmlTag);
 
-    // create symbol container & add symbols to it
-    let symbolContainer = document.createElement('div');
-    symbolContainer.id = 'symbols-container';
-    symbolContainer.appendChild(symbolOne);
-    symbolContainer.appendChild(symbolTwo);
-    symbolContainer.appendChild(symbolThree);
+    const spinButton = document.getElementById('spin-button');
+    spinButton.addEventListener("click", function() {
+        roll();
+    });
 
-    // create the button 
-    let button = document.createElement('button');
-    button.id = 'spin-button';
-    button.onclick = () => roll();
-    button.className = 'pushable';
-    button.innerHTML = `
-        <span class="shadow"></span>
-        <span class="edge"></span>
-        <span class="front"> Spin! </span>
-    `;
-
-    // create the button container & add button to it
-    let buttonContainer = document.createElement('div');
-    buttonContainer.className = 'center-div';
-    buttonContainer.appendChild(button);
-
-
-    // get the parent & add everything to parent 
-    const parentContainer = document.getElementById(htmlTag);
-    parentContainer.innerHTML = '';
-    parentContainer.appendChild(symbolContainer);
-    parentContainer.appendChild(buttonContainer);
-
-}
-
-
-function createSymbolContainer(position) {
-    let symbolContainer = document.createElement('div');
-
-    let symbol = document.createElement('img');
-    symbol.setAttribute('src', 'assets/' + getRandomSymbol());
-    symbol.id = "position-" + position;
-    symbolContainer.className = 'symbol'
-
-    symbolContainer.appendChild(symbol);
-
-    return symbolContainer;
 }
 
 async function backendRoll() {
