@@ -21,20 +21,26 @@ async function roll() {
 
     if (accountCheck()) {
         Sounds.playSpin();
-        runLoop(1, 2000, backendResponse[0]);
-        runLoop(2, 2500, backendResponse[1]);
-        runLoop(3, 3100, backendResponse[2]);
+        runLoop(1, 2000, backendResponse.roll[0]);
+        runLoop(2, 2500, backendResponse.roll[1]);
+        runLoop(3, 3100, backendResponse.roll[2]);
     } else {
         alert('You need to sign in to play')
         console.log('You need to sign in to play')
     }
-    setTimeout(() => playSound(), 3300)
+    setTimeout(() => playSound(backendResponse.score), 3300)
     setTimeout(() => displayUserStats(), 3300)
 
 }
 
-function playSound() {
-    Sounds.playLose()
+function playSound(score) {
+    if (score == 0) {
+        Sounds.playLose()
+    } else if (score < 50) {
+        Sounds.playSmallWin()
+    } else if (score >= 50) {
+        Sounds.playBigWin()
+    }
 }
 
 function accountCheck() {
