@@ -2,11 +2,13 @@ import { isSignedIn, getUsername, getToken } from '../account/account.js';
 import { displayUserStats } from '../stats/stats.js';
 import { loadFileToElement } from '../../../scripts/loadHtml.js';
 
+import * as Sounds from '../../../scripts/audio.js';
+
 const filePath = `components/slots/machine`;
 
 const htmlTag = "slots";
 
-const symbols = ['bar.png', 'bell.png', 'cherry.png', 'seven.png'];
+const symbols = ['single-bar.png', 'double-bar.png', 'triple-bar.png', 'bell.png', 'cherry.png', 'seven.png'];
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -18,19 +20,25 @@ async function roll() {
     let backendResponse = await backendRoll();
 
     if (accountCheck()) {
+        Sounds.playSpin();
         runLoop(1, 2000, backendResponse[0]);
         runLoop(2, 2500, backendResponse[1]);
-        runLoop(3, 3500, backendResponse[2]);
+        runLoop(3, 3100, backendResponse[2]);
     } else {
         alert('You need to sign in to play')
         console.log('You need to sign in to play')
     }
-    setTimeout(() => displayUserStats(), 4000)
+    setTimeout(() => playSound(), 3300)
+    setTimeout(() => displayUserStats(), 3300)
 
 }
 
+function playSound() {
+    Sounds.playLose()
+}
+
 function accountCheck() {
-    return isSignedIn;
+    return isSignedIn();
 }
 
 function getSymbolPath(symbolType) {
@@ -65,7 +73,13 @@ async function display() {
     spinButton.addEventListener("click", function() {
         roll();
     });
+    displayRollButton();
+}
 
+
+export function displayRollButton() {
+    const spinButton = document.getElementById('spin-button');
+    spinButton.hidden = !isSignedIn()
 }
 
 async function backendRoll() {
@@ -85,6 +99,7 @@ async function backendRoll() {
         let res = await response.json();
 
         if (response.ok) {
+            console.log(res)
             return res;
         } else {
             console.log(res['message']);
@@ -92,7 +107,7 @@ async function backendRoll() {
 
     } catch (error) {
         console.error('Error handling roll:', error);
-    }
+    } 
 
 }
 

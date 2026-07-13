@@ -1,5 +1,6 @@
 import { displayUserStats } from "../stats/stats.js";
 import { loadFileToElement } from "../../../scripts/loadHtml.js";
+import { displayRollButton } from "../machine/machine.js";
 
 const filePath = `components/slots/account`;
 
@@ -90,7 +91,6 @@ async function submit(endpoint) {
             document.getElementById(htmlTag).innerHTML = ''
             displayUserStats();
 
-
         } else {
             console.log(res);
             let message = res['message'];
@@ -100,7 +100,7 @@ async function submit(endpoint) {
     } catch (error) {
         console.error('Error handling account:', error);
     } finally {
-        // load the board?
+        displayRollButton();
     }
 }
 
