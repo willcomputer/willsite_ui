@@ -5,6 +5,9 @@ const htmlTag = "stats";
 
 const filePath = `components/slots/stats`;
 
+let spins = 0;
+let points = 0;
+
 
 export async function displayUserStats() {
 
@@ -16,9 +19,11 @@ export async function displayUserStats() {
     nameLabel.innerText = getUsername();
     
     const spinsLabel = document.getElementById('spins');
+    spins = Number(stats['spins'])
     spinsLabel.innerText = 'Total Spins: ' + stats['spins'];
 
     const pointsLabel = document.getElementById('points');
+    points = Number(stats['points'])
     pointsLabel.innerText = 'Points: ' + stats['points'];
 
 }
@@ -48,4 +53,10 @@ async function fetchStats() {
     } catch (error) {
         console.error('Error handling roll:', error);
     }
+}
+
+export function subtractSpinCost() {
+    points = points - 10;
+    const pointsLabel = document.getElementById('points');
+    pointsLabel.innerText = 'Points: ' + points;
 }

@@ -125,7 +125,8 @@ function submitSignUp() {
 
 
 function displayAccountError(message) {
-
+    alert(message);
+    display();
 }
 
 

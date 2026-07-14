@@ -11,15 +11,15 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/format.css">
     <link rel="stylesheet" href="styles/font.css">
     <link rel="stylesheet" href="styles/text-style.css">
     <link rel="stylesheet" href="styles/machine.css">
     <link rel="stylesheet" href="styles/3d-button.css">
     <link rel="stylesheet" href="styles/account.css">
-
-
+    <link rel="stylesheet" href="styles/table.css">
+    <link rel="stylesheet" href="styles/score-pop-up.css">
 
 </head>
 
@@ -27,19 +27,21 @@
 
     <div id="main">
 
-        <h1>OUT OF THIS WORLD SLOTS!</h1>
+        <h1>Lucky Clover Slots</h1>
 
         <div id="slots">
             Please enable Javascript
         </div>
-
+        <div id="score-popup"></div>
         <div id="account">
             
         </div>
 
-        <div id="stats">
-
+        <div class="center-div">
+            <div id="stats"></div>
+            <div id="scoring-key"></div>
         </div>
+
 
     </div>
 
@@ -50,6 +52,7 @@
 <script type="module" src="components/slots/machine/machine.js"></script>
 <script type="module" src="components/slots/account/account.js"></script>
 <script type="module" src="components/slots/stats/stats.js"></script>
+<script type="module" src="components/slots/scoring-key/scoring-key.js"></script>
 <script type="module" src="scripts/loadHtml.js"></script>
 
 </html>

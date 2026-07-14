@@ -1,5 +1,5 @@
 import { isSignedIn, getUsername, getToken } from '../account/account.js';
-import { displayUserStats } from '../stats/stats.js';
+import { displayUserStats, subtractSpinCost } from '../stats/stats.js';
 import { loadFileToElement } from '../../../scripts/loadHtml.js';
 
 import * as Sounds from '../../../scripts/audio.js';
@@ -16,7 +16,7 @@ async function roll() {
 
     document.getElementById('spin-button').disabled = true;
     setTimeout(() => document.getElementById('spin-button').disabled = false, 4000);
-
+    subtractSpinCost()
     let backendResponse = await backendRoll();
 
     if (accountCheck()) {
@@ -29,6 +29,7 @@ async function roll() {
         console.log('You need to sign in to play')
     }
     setTimeout(() => playSound(backendResponse.score), 3300)
+    setTimeout(() => flashScore(backendResponse.score), 3300)
     setTimeout(() => displayUserStats(), 3300)
 
 }
@@ -105,7 +106,6 @@ async function backendRoll() {
         let res = await response.json();
 
         if (response.ok) {
-            console.log(res)
             return res;
         } else {
             console.log(res['message']);
@@ -114,7 +114,16 @@ async function backendRoll() {
     } catch (error) {
         console.error('Error handling roll:', error);
     } 
+}
 
+function flashScore(points) {
+    const popup = document.getElementById("score-popup");
+    popup.textContent = `+${points}`;
+
+    // Restart animation
+    popup.classList.remove("show");
+    void popup.offsetWidth; // Force reflow
+    popup.classList.add("show");
 }
 
 
